@@ -2,6 +2,6 @@
 
 export default function Page() {
   return (
-      <h1>page classes</h1>
+      <h1>page documents</h1>
   )
 }

@@ -1,0 +1,242 @@
+[
+  {
+    "id": 1,
+    "taskName": "Research Paper: Environmental Science",
+    "type": "assignment",
+    "status": "in_progress",
+    "dueDate": "2025-05-20",
+    "priority": "high"
+  },
+  {
+    "id": 2,
+    "taskName": "Math Problem Set 4",
+    "type": "homework",
+    "status": "not_started",
+    "dueDate": "2025-05-12",
+    "priority": "medium"
+  },
+  {
+    "id": 3,
+    "taskName": "History Presentation",
+    "type": "project",
+    "status": "in_progress",
+    "dueDate": "2025-05-25",
+    "priority": "high"
+  },
+  {
+    "id": 4,
+    "taskName": "Biology Quiz Preparation",
+    "type": "study",
+    "status": "not_started",
+    "dueDate": "2025-05-14",
+    "priority": "medium"
+  },
+  {
+    "id": 5,
+    "taskName": "English Literature Essay",
+    "type": "assignment",
+    "status": "completed",
+    "dueDate": "2025-05-02",
+    "priority": "high"
+  },
+  {
+    "id": 6,
+    "taskName": "Physics Lab Report",
+    "type": "lab",
+    "status": "in_progress",
+    "dueDate": "2025-05-18",
+    "priority": "high"
+  },
+  {
+    "id": 7,
+    "taskName": "French Vocabulary Review",
+    "type": "study",
+    "status": "not_started",
+    "dueDate": "2025-05-10",
+    "priority": "low"
+  },
+  {
+    "id": 8,
+    "taskName": "Computer Science Programming Assignment",
+    "type": "assignment",
+    "status": "in_progress",
+    "dueDate": "2025-05-22",
+    "priority": "medium"
+  },
+  {
+    "id": 9,
+    "taskName": "Art Project Sketch",
+    "type": "project",
+    "status": "completed",
+    "dueDate": "2025-05-01",
+    "priority": "low"
+  },
+  {
+    "id": 10,
+    "taskName": "Chemistry Formula Sheet",
+    "type": "study",
+    "status": "not_started",
+    "dueDate": "2025-05-16",
+    "priority": "medium"
+  },
+  {
+    "id": 11,
+    "taskName": "Spanish Oral Exam Preparation",
+    "type": "study",
+    "status": "not_started",
+    "dueDate": "2025-05-27",
+    "priority": "high"
+  },
+  {
+    "id": 12,
+    "taskName": "Psychology Case Study Analysis",
+    "type": "assignment",
+    "status": "in_progress",
+    "dueDate": "2025-05-19",
+    "priority": "medium"
+  },
+  {
+    "id": 13,
+    "taskName": "Group Project Meeting",
+    "type": "meeting",
+    "status": "not_started",
+    "dueDate": "2025-05-13",
+    "priority": "high"
+  },
+  {
+    "id": 14,
+    "taskName": "Statistics Problem Set",
+    "type": "homework",
+    "status": "not_started",
+    "dueDate": "2025-05-15",
+    "priority": "medium"
+  },
+  {
+    "id": 15,
+    "taskName": "Economic Theory Quiz",
+    "type": "study",
+    "status": "in_progress",
+    "dueDate": "2025-05-11",
+    "priority": "medium"
+  },
+  {
+    "id": 16,
+    "taskName": "Music Composition Draft",
+    "type": "project",
+    "status": "in_progress",
+    "dueDate": "2025-05-26",
+    "priority": "low"
+  },
+  {
+    "id": 17,
+    "taskName": "Geology Field Trip Report",
+    "type": "assignment",
+    "status": "not_started",
+    "dueDate": "2025-05-29",
+    "priority": "medium"
+  },
+  {
+    "id": 18,
+    "taskName": "Calculus Final Exam Study Guide",
+    "type": "study",
+    "status": "not_started",
+    "dueDate": "2025-05-30",
+    "priority": "high"
+  },
+  {
+    "id": 19,
+    "taskName": "Philosophy Reading Response",
+    "type": "assignment",
+    "status": "completed",
+    "dueDate": "2025-05-03",
+    "priority": "low"
+  },
+  {
+    "id": 20,
+    "taskName": "Astronomy Observation Log",
+    "type": "lab",
+    "status": "in_progress",
+    "dueDate": "2025-05-17",
+    "priority": "medium"
+  },
+  {
+    "id": 21,
+    "taskName": "Sociology Research Methods Quiz",
+    "type": "study",
+    "status": "not_started",
+    "dueDate": "2025-05-21",
+    "priority": "medium"
+  },
+  {
+    "id": 22,
+    "taskName": "Engineering Design Proposal",
+    "type": "project",
+    "status": "in_progress",
+    "dueDate": "2025-05-28",
+    "priority": "high"
+  },
+  {
+    "id": 23,
+    "taskName": "Public Speaking Practice",
+    "type": "study",
+    "status": "not_started",
+    "dueDate": "2025-05-24",
+    "priority": "medium"
+  },
+  {
+    "id": 24,
+    "taskName": "Database Management Homework",
+    "type": "homework",
+    "status": "completed",
+    "dueDate": "2025-05-05",
+    "priority": "medium"
+  },
+  {
+    "id": 25,
+    "taskName": "Theatre Script Analysis",
+    "type": "assignment",
+    "status": "in_progress",
+    "dueDate": "2025-05-23",
+    "priority": "low"
+  },
+  {
+    "id": 26,
+    "taskName": "Nutrition Study Plan",
+    "type": "study",
+    "status": "completed",
+    "dueDate": "2025-05-04",
+    "priority": "low"
+  },
+  {
+    "id": 27,
+    "taskName": "Marketing Strategy Presentation",
+    "type": "project",
+    "status": "not_started",
+    "dueDate": "2025-06-02",
+    "priority": "high"
+  },
+  {
+    "id": 28,
+    "taskName": "Anthropology Field Notes Compilation",
+    "type": "assignment",
+    "status": "in_progress",
+    "dueDate": "2025-05-31",
+    "priority": "medium"
+  },
+  {
+    "id": 29,
+    "taskName": "Virtual Study Group Session",
+    "type": "meeting",
+    "status": "not_started",
+    "dueDate": "2025-05-09",
+    "priority": "medium"
+  },
+  {
+    "id": 30,
+    "taskName": "Biochemistry Lab Preparation",
+    "type": "lab",
+    "status": "not_started",
+    "dueDate": "2025-05-13",
+    "priority": "high"
+  }
+]
