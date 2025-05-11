@@ -1,5 +1,5 @@
 export default function Page() {
   return (
-      <h1>page projet</h1>
+      <h1>page projects modifier</h1>
   )
 }
