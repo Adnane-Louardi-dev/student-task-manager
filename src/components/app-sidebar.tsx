@@ -43,27 +43,27 @@ const data = {
   navMain: [
     {
       title: "Dashboard",
-      url: "#",
+      url: "/dashboard",
       icon: IconDashboard,
     },
     {
       title: "Tasks",
-      url: "#",
+      url: "/dashboard/tasks",
       icon: IconListDetails,
     },
     {
       title: "Classes",
-      url: "#",
+      url: "/dashboard/classes",
       icon: IconSchool,
     },
     {
       title: "Projects",
-      url: "#",
+      url: "/dashboard/projects",
       icon: IconFolder,
     },
     {
       title: "TPs & TDs",
-      url: "#",
+      url: "/dashboard/tds-and-tps",
       icon: IconBook,
     },
   ],
@@ -135,7 +135,7 @@ const data = {
   documents: [
     {
       name: "Google Drives",
-      url: "#",
+      url: "drive.google.com",
       icon: IconBrandGoogleDrive,
     },
   ],

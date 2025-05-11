@@ -1,6 +1,7 @@
 "use client"
 
 import * as React from "react"
+import { format } from "date-fns"
 import {
   DndContext,
   KeyboardSensor,
@@ -28,11 +29,11 @@ import {
   IconChevronsRight,
   IconCircleCheckFilled,
   IconDotsVertical,
-  IconGripVertical,
+  IconGripVertical, IconInputX,
   IconLayoutColumns,
-  IconLoader,
+  IconLoader, IconLoader2,
   IconPlus,
-  IconTrendingUp,
+  IconTrendingUp, IconX,
 } from "@tabler/icons-react"
 import {
   ColumnDef,
@@ -105,15 +106,17 @@ import {
   TabsList,
   TabsTrigger,
 } from "@/components/ui/tabs"
-
+import {CalendarIcon} from "lucide-react";
+import {Popover, PopoverContent, PopoverTrigger} from "@/components/ui/popover";
+import {cn} from "@/lib/utils";
+import { Calendar } from "@/components/ui/calendar"
 export const schema = z.object({
   id: z.number(),
-  header: z.string(),
+  taskName: z.string(),
   type: z.string(),
   status: z.string(),
-  target: z.string(),
-  limit: z.string(),
-  reviewer: z.string(),
+  dueDate: z.string(),
+  priority: z.string(),
 })
 
 // Create a separate component for the drag handle
@@ -169,8 +172,8 @@ const columns: ColumnDef<z.infer<typeof schema>>[] = [
     enableHiding: false,
   },
   {
-    accessorKey: "header",
-    header: "Header",
+    accessorKey: "taskName",
+    header: "Task Name",
     cell: ({ row }) => {
       return <TableCellViewer item={row.original} />
     },
@@ -191,94 +194,74 @@ const columns: ColumnDef<z.infer<typeof schema>>[] = [
     accessorKey: "status",
     header: "Status",
     cell: ({ row }) => (
-      <Badge variant="outline" className="text-muted-foreground px-1.5">
-        {row.original.status === "Done" ? (
-          <IconCircleCheckFilled className="fill-green-500 dark:fill-green-400" />
-        ) : (
-          <IconLoader />
+      <Badge variant="outline" className={`text-muted-foreground px-1.5 ${row.original.status === "completed" ? ('bg-green-500/10 text-green-500 dark:bg-green-400/10 dark:text-green-400') : ( row.original.status === "in_progress" ? ('bg-orange-500/10 text-orange-500 dark:bg-orange-400/10 dark:text-orange-400') : ('bg-red-500/10 text-red-500 dark:bg-red-400/10 dark:text-red-400'))}`}>
+        {row.original.status === "completed" ? (
+          <> <IconCircleCheckFilled className="fill-green-500 dark:fill-green-400" /> Completed </>
+        ) : ( row.original.status === "in_progress" ? (
+          <> <IconLoader2 className="text-orange-500 dark:text-orange-400" /> In progress </>
+        ) : (<> <IconX className="text-red-500 dark:text-red-400"/> Not started</>)
         )}
-        {row.original.status}
       </Badge>
     ),
   },
   {
-    accessorKey: "target",
-    header: () => <div className="w-full text-right">Target</div>,
-    cell: ({ row }) => (
-      <form
-        onSubmit={(e) => {
-          e.preventDefault()
-          toast.promise(new Promise((resolve) => setTimeout(resolve, 1000)), {
-            loading: `Saving ${row.original.header}`,
-            success: "Done",
-            error: "Error",
-          })
-        }}
-      >
-        <Label htmlFor={`${row.original.id}-target`} className="sr-only">
-          Target
-        </Label>
-        <Input
-          className="hover:bg-input/30 focus-visible:bg-background dark:hover:bg-input/30 dark:focus-visible:bg-input/30 h-8 w-16 border-transparent bg-transparent text-right shadow-none focus-visible:border dark:bg-transparent"
-          defaultValue={row.original.target}
-          id={`${row.original.id}-target`}
-        />
-      </form>
-    ),
+  accessorKey: "dueDate",
+  header: () => <div className="w-full text-right">Due Date</div>,
+  cell: ({ row, table }) => {
+
+    return (
+      <Popover>
+        <PopoverTrigger asChild>
+          <Button
+            variant={"outline"}
+            className={cn(
+              "w-[150px] justify-start text-left font-normal",
+              !row.original.dueDate && "text-muted-foreground"
+            )}
+          >
+            <CalendarIcon className="mr-2 h-4 w-4" />
+            {row.original.dueDate ? format(new Date(row.original.dueDate), "PPP") : <span>Pick a date</span>}
+          </Button>
+        </PopoverTrigger>
+        <PopoverContent className="w-auto p-0">
+          <Calendar
+            mode="single"
+            selected={row.original.dueDate ? new Date(row.original.dueDate) : undefined}
+            onSelect={(date) => date}
+            initialFocus
+          />
+        </PopoverContent>
+      </Popover>
+    );
   },
+},
   {
-    accessorKey: "limit",
-    header: () => <div className="w-full text-right">Limit</div>,
-    cell: ({ row }) => (
-      <form
-        onSubmit={(e) => {
-          e.preventDefault()
-          toast.promise(new Promise((resolve) => setTimeout(resolve, 1000)), {
-            loading: `Saving ${row.original.header}`,
-            success: "Done",
-            error: "Error",
-          })
-        }}
-      >
-        <Label htmlFor={`${row.original.id}-limit`} className="sr-only">
-          Limit
-        </Label>
-        <Input
-          className="hover:bg-input/30 focus-visible:bg-background dark:hover:bg-input/30 dark:focus-visible:bg-input/30 h-8 w-16 border-transparent bg-transparent text-right shadow-none focus-visible:border dark:bg-transparent"
-          defaultValue={row.original.limit}
-          id={`${row.original.id}-limit`}
-        />
-      </form>
-    ),
-  },
-  {
-    accessorKey: "reviewer",
-    header: "Reviewer",
+    accessorKey: "priority",
+    header: "Priority",
     cell: ({ row }) => {
-      const isAssigned = row.original.reviewer !== "Assign reviewer"
+      const isAssigned = row.original.priority !== "Add Priority"
 
       if (isAssigned) {
-        return row.original.reviewer
+        return row.original.priority
       }
 
       return (
         <>
-          <Label htmlFor={`${row.original.id}-reviewer`} className="sr-only">
+          <Label htmlFor={`${row.original.id}-priority`} className="sr-only">
             Reviewer
           </Label>
           <Select>
             <SelectTrigger
               className="w-38 **:data-[slot=select-value]:block **:data-[slot=select-value]:truncate"
               size="sm"
-              id={`${row.original.id}-reviewer`}
+              id={`${row.original.id}-priority`}
             >
-              <SelectValue placeholder="Assign reviewer" />
+              <SelectValue placeholder="Select Priority" />
             </SelectTrigger>
             <SelectContent align="end">
-              <SelectItem value="Eddie Lake">Eddie Lake</SelectItem>
-              <SelectItem value="Jamik Tashpulatov">
-                Jamik Tashpulatov
-              </SelectItem>
+              <SelectItem value="medium">Medium</SelectItem>
+              <SelectItem value="high">High</SelectItem>
+              <SelectItem value="low">Low</SelectItem>
             </SelectContent>
           </Select>
         </>
@@ -492,6 +475,7 @@ export function DataTable({
                 {table.getHeaderGroups().map((headerGroup) => (
                   <TableRow key={headerGroup.id}>
                     {headerGroup.headers.map((header) => {
+                      console.log(headerGroup.headers)
                       return (
                         <TableHead key={header.id} colSpan={header.colSpan}>
                           {header.isPlaceholder
@@ -654,14 +638,14 @@ function TableCellViewer({ item }: { item: z.infer<typeof schema> }) {
     <Drawer direction={isMobile ? "bottom" : "right"}>
       <DrawerTrigger asChild>
         <Button variant="link" className="text-foreground w-fit px-0 text-left">
-          {item.header}
+          {item.taskName}
         </Button>
       </DrawerTrigger>
       <DrawerContent>
         <DrawerHeader className="gap-1">
-          <DrawerTitle>{item.header}</DrawerTitle>
+          <DrawerTitle>{item.taskName}</DrawerTitle>
           <DrawerDescription>
-            Showing total visitors for the last 6 months
+            You can edit your task here
           </DrawerDescription>
         </DrawerHeader>
         <div className="flex flex-col gap-4 overflow-y-auto px-4 text-sm">
@@ -710,13 +694,11 @@ function TableCellViewer({ item }: { item: z.infer<typeof schema> }) {
               <Separator />
               <div className="grid gap-2">
                 <div className="flex gap-2 leading-none font-medium">
-                  Trending up by 5.2% this month{" "}
+                  Time spent in this task{" "}
                   <IconTrendingUp className="size-4" />
                 </div>
                 <div className="text-muted-foreground">
-                  Showing total visitors for the last 6 months. This is just
-                  some random text to test the layout. It spans multiple lines
-                  and should wrap around.
+                  Showing total time spent to complete this task, measured by pomodoro technique, of 25min chunks.
                 </div>
               </div>
               <Separator />
@@ -724,33 +706,32 @@ function TableCellViewer({ item }: { item: z.infer<typeof schema> }) {
           )}
           <form className="flex flex-col gap-4">
             <div className="flex flex-col gap-3">
-              <Label htmlFor="header">Header</Label>
-              <Input id="header" defaultValue={item.header} />
+              <Label htmlFor="header">Task name</Label>
+              <Input id="header" defaultValue={item.taskName}/>
             </div>
             <div className="grid grid-cols-2 gap-4">
               <div className="flex flex-col gap-3">
                 <Label htmlFor="type">Type</Label>
                 <Select defaultValue={item.type}>
                   <SelectTrigger id="type" className="w-full">
-                    <SelectValue placeholder="Select a type" />
+                    <SelectValue placeholder="Select a type"/>
                   </SelectTrigger>
                   <SelectContent>
-                    <SelectItem value="Table of Contents">
-                      Table of Contents
+                    <SelectItem value="study">
+                      Study
                     </SelectItem>
-                    <SelectItem value="Executive Summary">
-                      Executive Summary
+                    <SelectItem value="homework">
+                      Homework
                     </SelectItem>
-                    <SelectItem value="Technical Approach">
-                      Technical Approach
+                    <SelectItem value="Assignment">
+                      Assignment
                     </SelectItem>
-                    <SelectItem value="Design">Design</SelectItem>
-                    <SelectItem value="Capabilities">Capabilities</SelectItem>
-                    <SelectItem value="Focus Documents">
-                      Focus Documents
+                    <SelectItem value="project">Project</SelectItem>
+                    <SelectItem value="tp">TP</SelectItem>
+                    <SelectItem value="td">
+                      TD
                     </SelectItem>
-                    <SelectItem value="Narrative">Narrative</SelectItem>
-                    <SelectItem value="Cover Page">Cover Page</SelectItem>
+                    <SelectItem value="meeting">Meeting</SelectItem>
                   </SelectContent>
                 </Select>
               </div>
@@ -758,7 +739,7 @@ function TableCellViewer({ item }: { item: z.infer<typeof schema> }) {
                 <Label htmlFor="status">Status</Label>
                 <Select defaultValue={item.status}>
                   <SelectTrigger id="status" className="w-full">
-                    <SelectValue placeholder="Select a status" />
+                    <SelectValue placeholder="Select a status"/>
                   </SelectTrigger>
                   <SelectContent>
                     <SelectItem value="Done">Done</SelectItem>
@@ -769,34 +750,34 @@ function TableCellViewer({ item }: { item: z.infer<typeof schema> }) {
               </div>
             </div>
             <div className="grid grid-cols-2 gap-4">
-              <div className="flex flex-col gap-3">
-                <Label htmlFor="target">Target</Label>
-                <Input id="target" defaultValue={item.target} />
+              <div className="grid grid-cols gap-4">
+                <div className="flex flex-col gap-3 w-full">
+                  <Label htmlFor="limit">Due Date</Label>
+                  <Input id="limit" className={'w-full'} defaultValue={item.dueDate}/>
+                </div>
               </div>
-              <div className="flex flex-col gap-3">
-                <Label htmlFor="limit">Limit</Label>
-                <Input id="limit" defaultValue={item.limit} />
+              <div className="grid grid-cols gap-4">
+                <div className="flex flex-col gap-3">
+                  <Label htmlFor="reviewer">Priority</Label>
+                  <Select defaultValue={item.priority}>
+                    <SelectTrigger id="reviewer" className="w-full">
+                      <SelectValue placeholder="Select a reviewer"/>
+                    </SelectTrigger>
+                    <SelectContent>
+                      <SelectItem value="low">Low</SelectItem>
+                      <SelectItem value="medium">
+                        Medium
+                      </SelectItem>
+                      <SelectItem value="high">High</SelectItem>
+                    </SelectContent>
+                  </Select>
+                </div>
               </div>
-            </div>
-            <div className="flex flex-col gap-3">
-              <Label htmlFor="reviewer">Reviewer</Label>
-              <Select defaultValue={item.reviewer}>
-                <SelectTrigger id="reviewer" className="w-full">
-                  <SelectValue placeholder="Select a reviewer" />
-                </SelectTrigger>
-                <SelectContent>
-                  <SelectItem value="Eddie Lake">Eddie Lake</SelectItem>
-                  <SelectItem value="Jamik Tashpulatov">
-                    Jamik Tashpulatov
-                  </SelectItem>
-                  <SelectItem value="Emily Whalen">Emily Whalen</SelectItem>
-                </SelectContent>
-              </Select>
             </div>
           </form>
         </div>
         <DrawerFooter>
-          <Button>Submit</Button>
+        <Button>Submit</Button>
           <DrawerClose asChild>
             <Button variant="outline">Done</Button>
           </DrawerClose>
