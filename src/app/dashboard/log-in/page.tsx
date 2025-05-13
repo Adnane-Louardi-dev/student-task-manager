@@ -1,9 +1,10 @@
 'use client';
 import React, { useEffect, useState } from 'react';
 import './page.css';
-
+import { useRouter } from 'next/navigation';
 function Login() {
   const [rememberMe, setRememberMe] = useState(false);
+  const router = useRouter();
 
   // Check if "remember me" info is in localStorage when the component mounts
   useEffect(() => {
@@ -38,6 +39,7 @@ function Login() {
       alert("Mot de passe incorrect.");
       return;
     }
+    localStorage.setItem("prenom", user.prenom);
 
     // If "Remember me" is checked, store the credentials in localStorage
     if (rememberMe) {
@@ -49,6 +51,7 @@ function Login() {
     }
 
     alert("Connexion réussie !");
+     router.push('/dashboard');
     // redirect or set session logic here
   };
 
@@ -77,8 +80,9 @@ function Login() {
           />
           Se souvenir de moi?
         </label>
-
+         
         <button type='submit'>Connexion</button>
+        
         <p className='p'>Pas encore de compte ? <a href='sign-in'>Créer un compte</a></p>
         <a href='./mot-de-passe-oublie'className='forgotpassword'>mot de passe oublié?</a>
       </form>
