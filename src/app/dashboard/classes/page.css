@@ -1,0 +1,93 @@
+/* Conteneur principal */
+.page-container {
+  max-width: 900px;
+  margin: 0 auto;
+  padding: 20px;
+  font-family: Arial, sans-serif;
+}
+
+.title {
+  text-align: center;
+  margin-bottom: 20px;
+  font-size: 24px;
+  color: #333;
+}
+
+/* Formulaire de sélection */
+.form {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+  margin-bottom: 20px;
+}
+
+select {
+  padding: 8px;
+  font-size: 1rem;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  width: 100%;
+}
+
+button {
+  padding: 10px;
+  font-size: 1rem;
+  border: none;
+  background-color: #007bff; /* Bleu clair */
+  color: white;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+
+button:hover {
+  background-color: #0056b3; /* Bleu foncé */
+}
+
+/* Liste des classes */
+.class-list {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+/* Carte de chaque classe */
+.class-card {
+  border: 1px solid #ddd;
+  padding: 20px;
+  border-radius: 5px;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+.class-actions {
+  margin-top: 10px;
+}
+
+.edit-button, .delete-button {
+  padding: 8px 16px;
+  margin: 5px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: 0.9rem;
+}
+
+/* Bouton pour modifier */
+.edit-button {
+  background-color: #17a2b8; /* Bleu clair */
+  color: white;
+}
+
+.edit-button:hover {
+  background-color: #138496; /* Bleu foncé */
+}
+
+/* Bouton pour supprimer */
+.delete-button {
+  background-color: #dc3545; /* Rouge */
+  color: white;
+}
+
+.delete-button:hover {
+  background-color: #c82333; /* Rouge foncé */
+}
