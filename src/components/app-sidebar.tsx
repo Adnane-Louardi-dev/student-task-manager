@@ -135,7 +135,7 @@ const data = {
   documents: [
     {
       name: "Google Drives",
-      url: "drive.google.com",
+      url: "/dashboard/drive",
       icon: IconBrandGoogleDrive,
     },
   ],

@@ -1,12 +1,12 @@
 .form-container {
-  height: 98vh;
+  height: 80vh;
   display: flex;
   flex-direction: column;
   justify-content: center;
   max-width: 600px;
-  margin: 0 auto;
+  margin: 100px auto;
   padding: 2rem;
-  background: linear-gradient(135deg, #f3f4f6, #dbeafe);
+  background: oklch(98.4% 0.014 180.72);
   border-radius: 12px;
   box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
   overflow: hidden;
