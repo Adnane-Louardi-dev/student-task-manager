@@ -15,10 +15,7 @@ interface Task {
   id: string;
   title: string;
   done: boolean;
-}
-
-export default function 
-
+},
 export default function Page() {
   const [tasks, setTasks] = useState<Task[]>([]);
   const [newTask, setNewTask] = useState<string>("");
