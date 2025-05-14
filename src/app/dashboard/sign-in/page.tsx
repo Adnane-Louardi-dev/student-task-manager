@@ -2,6 +2,8 @@
 import React from 'react';
 import './page.css';
 
+
+
 function Join() {
   const handleChange = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
@@ -68,9 +70,12 @@ if (!nameRegex.test(prenom)) {
     const userData = { nom, prenom, email, password, code, birthdate: birthdateValue };
     localStorage.setItem(email, JSON.stringify(userData));
     localStorage.setItem("prenom", prenom);
+   
+
+
 
     alert("Compte créé avec succès !");
-    window.location.href = "/log-in";
+    
   };
 
   return (
