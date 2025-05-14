@@ -3,22 +3,34 @@ import React from 'react';
 const drives = [
   {
     title: "1ère année - Semestre 1",
-    url: "https://drive.google.com/drive/folder1"
+    url: "https://drive.google.com/drive/folders/1SPxlvT6rhF_ZijQweqyZhOcKCOLOmE-K?usp=drive_link"
   },
   {
-    title: "2ème année - Semestre 2",
-    url: "https://drive.google.com/drive/folder2"
+    title: "1ère année - Semestre 2",
+    url: "https://drive.google.com/drive/folders/1yGH_-giQdRdWTSw4yRdx-qyxRGRSsFgf?usp=drive_link"
   },
   {
-    title: "3ème année - Semestre 1",
-    url: "https://drive.google.com/drive/folder3"
-  }
+    title: "2ère année - Semestre 3",
+    url: "https://drive.google.com/drive/folders/1dOvuUMCrEmILyB8Y5DSTe6ng_-OkLiwJ?usp=drive_link"
+  },
+  {
+    title: "2ème année - Semestre 4",
+    url: "https://drive.google.com/drive/folders/1jfzjwe7kMXjxkmuIEvRytUmP0H4Hafoj?usp=drive_link"
+  },
+  {
+    title: "3ème année - Semestre 5",
+    url: "https://drive.google.com/drive/folders/1mvlBcWO8QX_-7JPYA3_18JDCT8JTUqJq?usp=drive_link"
+  },
+  {
+    title: "3ère année - Semestre 6",
+    url: "https://drive.google.com/drive/folders/1KFqmyOQO4gDmkpNF8IrcPMuNBFhQOl1G?usp=drive_link"
+  },
 ];
 
 export default function Drive() {
   return (
     <div className="p-8">
-      <h1 className="text-2xl font-bold mb-6">Mes Drives pour ce semestre</h1>
+      <h1 className="text-6xl font-bold mb-6 text-center">Mes Drives </h1>
       <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
         {drives.map((drive, index) => (
           <div
