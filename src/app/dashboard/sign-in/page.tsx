@@ -75,7 +75,7 @@ if (!nameRegex.test(prenom)) {
 
 
     alert("Compte créé avec succès !");
-    
+    window.location.href = "/dashboard";
   };
 
   return (
