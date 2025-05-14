@@ -70,7 +70,7 @@ if (!nameRegex.test(prenom)) {
     localStorage.setItem("prenom", prenom);
 
     alert("Compte créé avec succès !");
-    window.location.href = "/log-in";
+    window.location.href = "/dashboard";
   };
 
   return (

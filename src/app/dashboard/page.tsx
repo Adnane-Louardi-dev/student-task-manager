@@ -8,6 +8,8 @@ import {
   SidebarProvider,
 } from "@/components/ui/sidebar"
 
+
+
 import data from "./data.json"
 import tasks from "./tasks.json"
 
@@ -20,7 +22,11 @@ export default function Page() {
           "--header-height": "calc(var(--spacing) * 12)",
         } as React.CSSProperties
       }
+
     >
+      
+    
+    
       <AppSidebar variant="inset" />
       <SidebarInset>
         <SiteHeader />
@@ -34,9 +40,11 @@ export default function Page() {
               <DataTable data={tasks} />
             </div>
           </div>
+          <div>
+          </div>
         </div>
-        <div> <a href="/dashboard/incremonter"><button>click ici</button></a></div>;
       </SidebarInset>
     </SidebarProvider>
+   
   )
 }

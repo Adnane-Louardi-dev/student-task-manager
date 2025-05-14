@@ -1,23 +1,16 @@
+'use client'
+import React, { useState, useEffect } from "react";
+import {DataTable, schema} from "@/components/data-table";
+import excistedTasks from "@/app/dashboard/tasks.json";
+import {z} from "zod";
 
-
-
-/* pour les tasks evety les mouuuuucles pour chaque class  */
-/* export default function Page() {  ))à)))   àààà       --(((((((())))))))
-  return (
-    <h1>page tasks</h1>  */
-   /* export default function Page() {
-  return ( 
-    <h1>page tasks</h1> */
-    'use client'
- import React, { useState, useEffect } from "react";
- 
 interface Task {
   id: string;
   title: string;
   done: boolean;
-},
+}
 export default function Page() {
-  const [tasks, setTasks] = useState<Task[]>([]);
+  const [tasks, setTasks] = useState<z.infer<typeof schema>[]>(excistedTasks);
   const [newTask, setNewTask] = useState<string>("");
 
   useEffect(() => {
@@ -31,19 +24,22 @@ export default function Page() {
     }
   }, [tasks]);
 
-  const handleToggle = (id: string) => {
+  const handleToggle = (id: number) => {
     const updatedTasks = tasks.map((task) =>
-      task.id === id ? { ...task, done: !task.done } : task
+      task.id === id ? { ...task, status: "completed" } : task
     );
     setTasks(updatedTasks);
   };
 
   const handleAddTask = () => {
     if (!newTask.trim()) return;
-    const newTaskObject: Task = {
-      id: Date.now().toString(),
-      title: newTask.trim(),
-      done: false,
+    const newTaskObject: z.infer<typeof schema> = {
+      id: Date.now(),
+      taskName: newTask.trim(),
+      type: 'TD',
+      status: 'not started',
+      dueDate: Date.toString(),
+      priority: "high",
     };
     setTasks([...tasks, newTaskObject]);
     setNewTask("");
@@ -61,12 +57,12 @@ export default function Page() {
             <div className="flex items-center">
               <input
                 type="checkbox"
-                checked={task.done}
+                checked={task.status === "completed"}
                 onChange={() => handleToggle(task.id)}
                 className="mr-4"
               />
-              <span className={task.done ? "line-through text-gray-500" : ""}>
-                {task.title}
+              <span className={task.status === "completed" ? "line-through text-gray-500" : ""}>
+                {task.taskName}
               </span>
             </div>
           </li>
@@ -87,6 +83,7 @@ export default function Page() {
           Ajouter
         </button>
       </div>
+      <DataTable data={tasks} />
     </div>
   );
 }
