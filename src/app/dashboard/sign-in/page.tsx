@@ -67,6 +67,7 @@ if (!nameRegex.test(prenom)) {
     // Save user to localStorage
     const userData = { nom, prenom, email, password, code, birthdate: birthdateValue };
     localStorage.setItem(email, JSON.stringify(userData));
+    localStorage.setItem("prenom", prenom);
 
     alert("Compte créé avec succès !");
     window.location.href = "/log-in";
