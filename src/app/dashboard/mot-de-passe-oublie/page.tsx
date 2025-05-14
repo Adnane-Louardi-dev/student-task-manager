@@ -3,6 +3,7 @@
 
 import React, { useState } from 'react';
 import './page.css'
+import Link from 'next/link';
 function motdepasseoublie() {
     const [email, setEmail] = useState('');
   const [error, setError] = useState('');
@@ -43,8 +44,9 @@ function motdepasseoublie() {
             <hr/>
             <div className='buttons'>
                <button type='submit' className='btnone'>confirmer</button>
-               
-               <button  type='submit' className='btntwo'>annuler</button>
+               <Link href={"/dashboard/log-in"}>
+                <button className='btntwo'>annuler</button>
+               </Link>
                
             </div>
          </form>
