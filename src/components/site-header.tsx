@@ -4,6 +4,7 @@ import { Button } from "@/components/ui/button";
 import { Separator } from "@/components/ui/separator";
 import { SidebarTrigger } from "@/components/ui/sidebar";
 import { IconBrightnessDown } from "@tabler/icons-react";
+import Link from "next/link";
 
 export function SiteHeader() {
   const [prenom, setPrenom] = useState<string>("invité");
@@ -26,6 +27,12 @@ export function SiteHeader() {
         <Separator orientation="vertical" className="mx-2 data-[orientation=vertical]:h-4" />
         <h1 className="text-base font-medium">Have a good day, {prenom}</h1>
         <div className="ml-auto flex items-center gap-2">
+              {/*Button hna*/}
+            {/*<Link href={"/dashboard/creer"}>*/}
+            {/*  <button variant="ghost" size="sm">*/}
+            {/*    Button*/}
+            {/*  </button>*/}
+            {/*</Link>*/}
           <Button variant="ghost" asChild size="sm" className="hidden sm:flex">
             <a href="#" rel="noopener noreferrer" target="_blank" className="dark:text-foreground">
               <IconBrightnessDown className={'size-7'} />
