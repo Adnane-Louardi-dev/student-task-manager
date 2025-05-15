@@ -5,3 +5,4 @@ export default function Page() {
       <h1>page documents</h1>
   )
 }
+<input type="text" />
